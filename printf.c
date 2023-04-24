@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 	va_list list;
 
 	if (format == NULL)
-		return (0);
+		return (-1);
 	va_start(list, format);
 	while (*format)
 	{
