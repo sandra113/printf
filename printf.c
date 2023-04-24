@@ -1,6 +1,23 @@
 #include "main.h"
 
 /**
+ * print_string - Prints a char pointer
+ * @list: va_list whose next item is a string
+ * Return: Number of bytes printed
+ */
+int print_string(va_list list)
+{
+	char *s;
+	int size;
+
+	s = va_arg(list, char *);
+	if (s == NULL)
+		s = "(null)";
+	size = strlen(s);
+	return (write(1, s, size));
+}
+
+/**
  * _printf - Produces output according to a format
  * @format: string containing format
  * Return: The number of bytes printed to fd 1
@@ -8,11 +25,11 @@
 int _printf(const char *format, ...)
 {
 	int bytes = 0;
-	int size;
 	char arg;
-	char *s;
 	va_list list;
 
+	if (format == NULL)
+		return (0);
 	va_start(list, format);
 	while (*format)
 	{
@@ -29,9 +46,7 @@ int _printf(const char *format, ...)
 					bytes += write(1, &arg, 1);
 					break;
 				case 's':
-					s = va_arg(list, char*);
-					size = strlen(s);
-					bytes += write(1, s, size);
+					bytes += print_string(list);
 					break;
 				default:
 					break;
@@ -45,6 +60,5 @@ int _printf(const char *format, ...)
 		format++;
 	}
 	va_end(list);
-
 	return (bytes);
 }
