@@ -1,20 +1,27 @@
 #include "main.h"
 
 /**
- * print_string - Prints a char pointer
- * @list: va_list whose next item is a string
- * Return: Number of bytes printed
+ * evaluate_format - Prints variables according to specifier
+ * @format: The format
+ * @list: Argument list
+ * Return: The number of bytes written
  */
-int print_string(va_list list)
+int evaluate_format(const char *format, va_list list)
 {
-	char *s;
-	int size;
+	int c;
 
-	s = va_arg(list, char *);
-	if (s == NULL)
-		s = "(null)";
-	size = strlen(s);
-	return (write(1, s, size));
+	switch (*format)
+	{
+		case '%':
+			return (write(1, format, 1));
+		case 'c':
+			c = va_arg(list, int);
+			return (write(1, &c, 1));
+		case 's':
+			return (print_string(list));
+		default:
+			return (write(1, format - 1, 2));
+	}
 }
 
 /**
@@ -26,7 +33,6 @@ int _printf(const char *format, ...)
 {
 	int bytes = 0;
 	int written;
-	char arg;
 	va_list list;
 
 	if (format == NULL)
@@ -38,26 +44,10 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
-			{
-				case '%':
-					written = write(1, format, 1);
-					break;
-				case 'c':
-					arg = va_arg(list, int);
-					written = write(1, &arg, 1);
-					break;
-				case 's':
-					written = print_string(list);
-					break;
-				case '\0':
-					if (bytes == 0)
-						bytes = -1;
-					break;
-				default:
-					written = write(1, format - 1, 2);
-					break;
-			}
+
+			if (bytes == 0 && *format == '\0')
+				return (-1);
+			written = evaluate_format(format, list);
 		}
 		else
 		{
