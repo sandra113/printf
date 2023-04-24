@@ -34,6 +34,7 @@ int _printf(const char *format, ...)
 	va_start(list, format);
 	while (*format)
 	{
+		written = -1;
 		if (*format == '%')
 		{
 			format++;
@@ -49,7 +50,12 @@ int _printf(const char *format, ...)
 				case 's':
 					written = print_string(list);
 					break;
+				case '\0':
+					if (bytes == 0)
+						bytes = -1;
+					break;
 				default:
+					written = write(1, format - 1, 2);
 					break;
 			}
 		}
