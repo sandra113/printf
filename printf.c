@@ -25,6 +25,7 @@ int print_string(va_list list)
 int _printf(const char *format, ...)
 {
 	int bytes = 0;
+	int written;
 	char arg;
 	va_list list;
 
@@ -39,14 +40,14 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case '%':
-					bytes += write(1, format, 1);
+					written = write(1, format, 1);
 					break;
 				case 'c':
 					arg = va_arg(list, int);
-					bytes += write(1, &arg, 1);
+					written = write(1, &arg, 1);
 					break;
 				case 's':
-					bytes += print_string(list);
+					written = print_string(list);
 					break;
 				default:
 					break;
@@ -54,9 +55,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, format, 1);
-			bytes++;
+			written = write(1, format, 1);
 		}
+		if (written > 0)
+			bytes += written;
 		format++;
 	}
 	va_end(list);
