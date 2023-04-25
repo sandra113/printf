@@ -51,12 +51,11 @@ int number_to_string(int num, char **str, int depth)
 int print_number(va_list list)
 {
 	char *str;
-	int num, len;
+	int num;
 	int bytes = -1;
 
 	num = va_arg(list, int);
 	number_to_string(num, &str, 0);
-	len = strlen(str);
 	if (num < 0)
 		bytes = _printf("%c%s", '-', str);
 	else
