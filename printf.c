@@ -19,7 +19,8 @@ int evaluate_format(const char *format, va_list list)
 			return (write(1, &c, 1));
 		case 's':
 			return (print_string(list));
-		case 'd' || 'i':
+		case 'd':
+		case 'i':
 			return (print_number(list));
 		default:
 			return (write(1, format - 1, 2));

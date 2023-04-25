@@ -3,3 +3,5 @@ printf.o
 print_number.o
 0-main.c
 main.o
+a.out
+.vscode

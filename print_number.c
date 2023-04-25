@@ -3,6 +3,15 @@
 #include <stdarg.h>
 
 /**
+ * _abs - Returns the absolute value of a number
+ * @num: The number
+ * Return: absolute value
+ */
+int _abs(int num)
+{
+	return (num >= 0 ? num : -num);
+}
+/**
  * number_to_string - converts an int value to string
  * @num: the integer to be converted
  * @str: the char pointer that stores the string
@@ -12,31 +21,24 @@
 
 int number_to_string(int num, char **str, int depth)
 {
-	int index, neg_index;
+	int index;
 
-	if (num == 0 && depth > 0)
+	if (num == 0)
 	{
+		if (depth == 0)
+		{
+			*str = malloc(sizeof(char) * (2));
+			(*str)[1] = '\0';
+			(*str)[0] = '0';
+			return (1);
+		}
 		*str = malloc(sizeof(char) * (depth + 1));
 		(*str)[depth] = '\0';
 		return (0);
 	}
-	if (num == 0)
-	{
-		*str = malloc(sizeof(char) * (2));
-		(*str)[1] = '\0';
-		(*str)[0] = '0';
-		return (1);
-	}
-	if (num < 0)
-	{
-		neg_index = number_to_string(-num, str, depth + 1);
-		memmove(*str + 1, *str, neg_index);
-		(*str)[0] = '-';
-		return (neg_index + 1);
-	}
 
 	index = number_to_string(num / 10, str, depth + 1);
-	(*str)[index] = num % 10 + '0';
+	(*str)[index] = _abs(num % 10) + '0';
 	return (index + 1);
 }
 
@@ -49,11 +51,17 @@ int number_to_string(int num, char **str, int depth)
 int print_number(va_list list)
 {
 	char *str;
-	int s, len;
+	int num, len;
+	int bytes = -1;
 
-	s = va_arg(list, int);
-	number_to_string(s, &str, 1);
+	num = va_arg(list, int);
+	number_to_string(num, &str, 0);
 	len = strlen(str);
-	return (write(1, str, len));
+	if (num < 0)
+		bytes = _printf("%c%s", '-', str);
+	else
+		bytes = _printf("%s", str);
+	free(str);
+	return (bytes);
 }
 
