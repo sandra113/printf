@@ -7,28 +7,24 @@
  * Return: Number of bytes printed
  */
 
-int print_number(va_list list)
+int number_to_string(int num, char **str, int depth)
 {
-	int i;
-	char *number, *num;
-
-	num = va_arg(list, char*);
-	i = 0; 
-	if (num[i] != '\0')
+	int index;
+	
+	if (num == 0)
 	{
-		i++;
+		if (depth == 0)
+		{
+			*str = malloc(sizeof(char) * (2));
+			(*str)[1] = '\0';
+			(*str)[0] = '0';
+			return 1;
+		}
+		*str = malloc(sizeof(char) * (depth +1));
+		(*str)[depth] = '\0';
+		return 0;
 	}
-	number = malloc(sizeof(char) * i + 1);
-	if (!number)
-		return (1);
-
-	for (i = 0; num[i] != '\0'; i++)
-	{
-		if (num[i] < '0' || num[i] > '9')
-			return (1);
-		number[i] = num[i] + '0';
-	}
-	number[i] = '\0';
-
-	return (write (1, number, i));
+	index = number_to_string(num / 10, str, depth + 1);
+	(*str)[index] = num % 10 + '0';
+	return index + 1;
 }
