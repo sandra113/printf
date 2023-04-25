@@ -7,6 +7,6 @@
 
 int _printf(const char *format, ...);
 int print_string(va_list list);
-int number_to_string(int num, char**str, int depth);
-
+int number_to_string(unsigned long int num, char**str, int depth);
+``
 #endif /* MAIN_H */

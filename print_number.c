@@ -9,7 +9,7 @@
  * Return: the string
  */
 
-int number_to_string(int num, char **str, int depth)
+int number_to_string(unsigned long int num, char **str, int depth)
 {
 	int index, neg_index;
 
