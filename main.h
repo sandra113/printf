@@ -7,5 +7,6 @@
 
 int _printf(const char *format, ...);
 int print_string(va_list list);
+int print_number(va_list list);
 
 #endif /* MAIN_H */
