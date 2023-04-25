@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdarg.h>
 
 /**
  * number_to_string - converts an int value to string
@@ -38,3 +39,21 @@ int number_to_string(int num, char **str, int depth)
 	(*str)[index] = num % 10 + '0';
 	return (index + 1);
 }
+
+/**
+ * print_number - Prints a number
+ * @list: va_list
+ * Return: Number of bytes printed
+ */
+
+int print_number(va_list list)
+{
+	char *str;
+	int s, len;
+
+	s = va_arg(list, int);
+	number_to_string(s, &str, 1);
+	len = strlen(str);
+	return (write(1, str, len));
+}
+

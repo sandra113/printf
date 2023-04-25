@@ -8,8 +8,7 @@
  */
 int evaluate_format(const char *format, va_list list)
 {
-	int c, d, e;
-	char *str;
+	int c;
 
 	switch (*format)
 	{
@@ -21,9 +20,7 @@ int evaluate_format(const char *format, va_list list)
 		case 's':
 			return (print_string(list));
 		case 'd' || 'i':
-			d = va_arg(list, int);
-			e = number_to_string(d, &str, 1);
-			return (write(1, &e, 1));
+			return (print_number(list));
 		default:
 			return (write(1, format - 1, 2));
 	}
