@@ -29,7 +29,7 @@ int evaluate_format(const char *format, va_list list)
 
 /**
  * _printf - Produces output according to a format
- * @format: string containing format
+ * @format: String containing format
  * Return: The number of bytes printed to fd 1
  */
 int _printf(const char *format, ...)
