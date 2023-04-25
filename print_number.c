@@ -41,10 +41,9 @@ int number_to_string(int num, char **str, int depth)
 	(*str)[index] = _abs(num % 10) + '0';
 	return (index + 1);
 }
-
 /**
  * print_number - Prints a number
- * @list: va_list
+ * @list: va_list of arguments
  * Return: Number of bytes printed
  */
 
