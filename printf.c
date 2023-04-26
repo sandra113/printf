@@ -24,6 +24,14 @@ int evaluate_format(const char *format, va_list list)
 			return (print_number(list));
 		case 'b':
 			return (print_byte(list));
+		case 'u':
+			return (print_unsigned_int(list));
+		case 'o':
+			return (print_unsigned_octal(list));
+		case 'x':
+			return (print_hexadecimal_lower(list));
+		case 'X':
+			return (print_hexadecimal_upper(list));
 		default:
 			return (write(1, format - 1, 2));
 	}

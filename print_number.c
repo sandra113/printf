@@ -1,52 +1,14 @@
 #include "main.h"
-#include <stdarg.h>
+#include "number_to_string.h"
 
-/**
- * _abs - Returns the absolute value of a number
- * @num: The number
- * Return: absolute value
- */
-int _abs(int num)
-{
-	return (num >= 0 ? num : -num);
-}
-/**
- * number_to_string - converts an int value to string
- * @num: the integer to be converted
- * @str: the char pointer that stores the string
- * @depth: the length of the string
- * Return: the string
- */
-
-int number_to_string(int num, char *str, int depth)
-{
-	int index;
-
-	if (num == 0)
-	{
-		if (depth == 0)
-		{
-			str[1] = '\0';
-			str[0] = '0';
-			return (1);
-		}
-		str[depth] = '\0';
-		return (0);
-	}
-
-	index = number_to_string(num / 10, str, depth + 1);
-	str[index] = _abs(num % 10) + '0';
-	return (index + 1);
-}
 /**
  * print_number - Prints a number
  * @list: va_list of arguments
  * Return: Number of bytes printed
  */
-
 int print_number(va_list list)
 {
-	char str[11];
+	char str[12];
 	int num;
 	int bytes = -1;
 
@@ -56,6 +18,78 @@ int print_number(va_list list)
 		bytes = _printf("%c%s", '-', str);
 	else
 		bytes = _printf("%s", str);
+	return (bytes);
+}
+
+/**
+ * print_unsigned_int - Prints an unsigned int in decimal
+ * @list: va_list of arguments
+ * Return: Number of bytes printed
+ */
+int print_unsigned_int(va_list list)
+{
+	char str[11];
+	unsigned int num;
+	int bytes = -1;
+
+	num = va_arg(list, unsigned int);
+	number_to_string(num, str, 0);
+
+	bytes = _printf("%s", str);
+	return (bytes);
+}
+
+/**
+ * print_unsigned_octal - Prints an unsigned int in octal
+ * @list: va_list of arguments
+ * Return: Number of bytes printed
+ */
+int print_unsigned_octal(va_list list)
+{
+	char str[12];
+	unsigned int num;
+	int bytes = -1;
+
+	num = va_arg(list, unsigned int);
+	number_to_string_octal(num, str);
+
+	bytes = _printf("%s", str);
+	return (bytes);
+}
+
+/**
+ * print_hexadecimal_lower - Prints an unsigned int in hexadecimal (lowercase)
+ * @list: va_list of arguments
+ * Return: Number of bytes printed
+ */
+int print_hexadecimal_lower(va_list list)
+{
+	char str[9];
+	int num;
+	int bytes = -1;
+
+	num = va_arg(list, unsigned int);
+	number_to_string_hexadecimal(num, str, 'a');
+
+	bytes = _printf("%s", str);
+	return (bytes);
+}
+
+/**
+ * print_hexadecimal_upper - Prints an unsigned int in hexadecimal (uppercase)
+ * @list: va_list of arguments
+ * Return: Number of bytes printed
+ */
+int print_hexadecimal_upper(va_list list)
+{
+	char str[9];
+	int num;
+	int bytes = -1;
+
+	num = va_arg(list, unsigned int);
+	number_to_string_hexadecimal(num, str, 'A');
+
+	bytes = _printf("%s", str);
 	return (bytes);
 }
 
