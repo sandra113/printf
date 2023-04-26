@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
 #include <stdarg.h>
 
 /**
@@ -19,7 +18,7 @@ int _abs(int num)
  * Return: the string
  */
 
-int number_to_string(int num, char **str, int depth)
+int number_to_string(int num, char *str, int depth)
 {
 	int index;
 
@@ -27,18 +26,16 @@ int number_to_string(int num, char **str, int depth)
 	{
 		if (depth == 0)
 		{
-			*str = malloc(sizeof(char) * (2));
-			(*str)[1] = '\0';
-			(*str)[0] = '0';
+			str[1] = '\0';
+			str[0] = '0';
 			return (1);
 		}
-		*str = malloc(sizeof(char) * (depth + 1));
-		(*str)[depth] = '\0';
+		str[depth] = '\0';
 		return (0);
 	}
 
 	index = number_to_string(num / 10, str, depth + 1);
-	(*str)[index] = _abs(num % 10) + '0';
+	str[index] = _abs(num % 10) + '0';
 	return (index + 1);
 }
 /**
@@ -49,17 +46,16 @@ int number_to_string(int num, char **str, int depth)
 
 int print_number(va_list list)
 {
-	char *str;
+	char str[11];
 	int num;
 	int bytes = -1;
 
 	num = va_arg(list, int);
-	number_to_string(num, &str, 0);
+	number_to_string(num, str, 0);
 	if (num < 0)
 		bytes = _printf("%c%s", '-', str);
 	else
 		bytes = _printf("%s", str);
-	free(str);
 	return (bytes);
 }
 
