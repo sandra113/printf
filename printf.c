@@ -22,6 +22,8 @@ int evaluate_format(const char *format, va_list list)
 		case 'd':
 		case 'i':
 			return (print_number(list));
+		case 'b':
+			return (print_byte(list));
 		default:
 			return (write(1, format - 1, 2));
 	}
