@@ -12,7 +12,9 @@ int print_string(va_list list)
 
 	s = va_arg(list, char *);
 	if (s == NULL)
+	{
 		s = "(null)";
+	}
 	size = strlen(s);
 	return (write(1, s, size));
 }
