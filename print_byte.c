@@ -28,4 +28,4 @@ int print_byte(va_list list)
 		i++;
 	}
 	return (_printf("%s", to_be_printed + i));
-	}
+}
