@@ -5,7 +5,7 @@
 
 /**
  * print_pointer - prints a pointer value
- * @list - the va_list whose next argument is a pointer
+ * @list: - the va_list whose next argument is a pointer
  * Return: the value address
  */
 
