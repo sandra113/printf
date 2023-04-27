@@ -92,4 +92,3 @@ int print_hexadecimal_upper(va_list list)
 	bytes = _printf("%s", str);
 	return (bytes);
 }
-
