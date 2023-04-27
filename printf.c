@@ -32,6 +32,8 @@ int evaluate_format(const char *format, va_list list)
 			return (print_hexadecimal_lower(list));
 		case 'X':
 			return (print_hexadecimal_upper(list));
+		case 'p':
+			return (print_pointer(list));
 		default:
 			return (write(1, format - 1, 2));
 	}

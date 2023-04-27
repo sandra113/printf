@@ -5,3 +5,4 @@ print_number.o
 main.o
 a.out
 .vscode
+print_pointer.o
