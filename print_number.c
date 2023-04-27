@@ -33,7 +33,7 @@ int print_unsigned_int(va_list list)
 	int bytes = -1;
 
 	num = va_arg(list, unsigned int);
-	number_to_string(num, str, 0);
+	number_to_string_unsigned_int(num, str, 0);
 
 	bytes = _printf("%s", str);
 	return (bytes);

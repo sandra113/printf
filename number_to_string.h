@@ -43,6 +43,34 @@ int number_to_string(int num, char *str, int depth)
 }
 
 /**
+ * number_to_string_unsigned_int - converts an unsigned int value to string
+ * @num: the integer to be converted
+ * @str: the char pointer that stores the string
+ * @depth: the length of the string
+ * Return: the string
+ */
+int number_to_string_unsigned_int(unsigned int num, char *str, int depth)
+{
+	int index;
+
+	if (num == 0)
+	{
+		if (depth == 0)
+		{
+			str[1] = '\0';
+			str[0] = '0';
+			return (1);
+		}
+		str[depth] = '\0';
+		return (0);
+	}
+
+	index = number_to_string(num / 10, str, depth + 1);
+	str[index] = num % 10 + '0';
+	return (index + 1);
+}
+
+/**
  * number_to_string_octal - converts an int value to string in octal
  * @num: the integer to be converted
  * @str: the char pointer that stores the string
