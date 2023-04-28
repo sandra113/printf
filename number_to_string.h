@@ -43,13 +43,13 @@ int number_to_string(int num, char *str, int depth)
 }
 
 /**
- * number_to_string_unsigned_int - converts an unsigned int value to string
+ * unsigned_int_to_string - converts an unsigned int value to string
  * @num: the integer to be converted
  * @str: the char pointer that stores the string
  * @depth: the length of the string
  * Return: the string
  */
-int number_to_string_unsigned_int(unsigned int num, char *str, int depth)
+int unsigned_int_to_string(unsigned int num, char *str, int depth)
 {
 	int index;
 
@@ -65,7 +65,7 @@ int number_to_string_unsigned_int(unsigned int num, char *str, int depth)
 		return (0);
 	}
 
-	index = number_to_string(num / 10, str, depth + 1);
+	index = unsigned_int_to_string(num / 10, str, depth + 1);
 	str[index] = num % 10 + '0';
 	return (index + 1);
 }

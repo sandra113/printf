@@ -33,7 +33,7 @@ int print_unsigned_int(va_list list)
 	int bytes = -1;
 
 	num = va_arg(list, unsigned int);
-	number_to_string_unsigned_int(num, str, 0);
+	unsigned_int_to_string(num, str, 0);
 
 	bytes = _printf("%s", str);
 	return (bytes);
@@ -65,7 +65,7 @@ int print_unsigned_octal(va_list list)
 int print_hexadecimal_lower(va_list list)
 {
 	char str[9];
-	int num;
+	unsigned int num;
 	int bytes = -1;
 
 	num = va_arg(list, unsigned int);
@@ -83,7 +83,7 @@ int print_hexadecimal_lower(va_list list)
 int print_hexadecimal_upper(va_list list)
 {
 	char str[9];
-	int num;
+	unsigned int num;
 	int bytes = -1;
 
 	num = va_arg(list, unsigned int);
