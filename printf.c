@@ -65,7 +65,7 @@ int evaluate_format(const char **format, va_list list)
 	switch (**format)
 	{
 		case '%':
-			return (write(1, format, 1));
+			return (write(1, *format, 1));
 		case 'c':
 			c = va_arg(list, int);
 			return (write(1, &c, 1));
