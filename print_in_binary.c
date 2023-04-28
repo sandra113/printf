@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * print_byte - Prints an unsigned int in binary
+ * print_in_binary - Prints an unsigned int in binary
  * @list: va_list whose next argument is unsigned int
  * Return: The number of bytes printed
  */
-int print_byte(va_list list)
+int print_in_binary(va_list list)
 {
 	unsigned int byte = va_arg(list, unsigned int);
 	unsigned int i;
