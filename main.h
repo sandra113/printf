@@ -28,6 +28,8 @@ int print_long_octal(va_list list);
 int print_long_hexadecimal_lower(va_list list);
 int print_long_hexadecimal_upper(va_list list);
 
+int print_wide_string(va_list list);
 int print_pointer(va_list list);
+
 
 #endif /* MAIN_H */
