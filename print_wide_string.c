@@ -15,7 +15,7 @@ int print_wide_string(va_list list)
 	str = va_arg(list, wchar_t *);
 	if (str == NULL)
 	{
-		str = "(null)";
+		str = (wchar_t *) "(null)";
 	}
 	for (i = 0; str[i]; i++)
 	{
