@@ -21,6 +21,8 @@ int evaluate_long_format(const char **format, va_list list)
 			return (print_long_hexadecimal_lower(list));
 		case 'X':
 			return (print_long_hexadecimal_upper(list));
+		case 'S':
+			return (print_wide_string(list));
 		default:
 			return (write(1, *format - 2, 3));
 	}

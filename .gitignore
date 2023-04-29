@@ -6,5 +6,3 @@ main.o
 a.out
 .vscode
 print_pointer.o
-print_wide_string.c
-
