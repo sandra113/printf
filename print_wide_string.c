@@ -1,4 +1,5 @@
 #include "main.h"
+#include <wchar.h>
 
 /**
  * print_wide_string - Prints a char pointer
